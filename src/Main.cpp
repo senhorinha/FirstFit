@@ -27,13 +27,13 @@ void imprimirComandosDisponiveis() {
 
 void imprimirMensagemDeBoasVindas() {
 
-	// Ascii art! http://patorjk.com/software/taag/#p=display&f=Standard&t=Buddy
-	cout<< "  ____            _     _               " << endl;
-	cout<< " | __ ) _   _  __| | __| |_   _         " << endl;
-	cout<< " |  _ \\| | | |/ _` |/ _` | | | |        " << endl;
-	cout<< " | |_) | |_| | (_| | (_| | |_| |        " << endl;
-	cout<< " |____/ \\__,_|\\__,_|\\__,_|\\__, |        " << endl;
-	cout<< "                           |___/         " << endl;
+	// http://patorjk.com/software/taag/#p=display&f=Standard&t=FirstFit
+	cout << "  _____ _          _   _____ _ _      " << endl;
+	cout << " |  ___(_)_ __ ___| |_|  ___(_) |_    " << endl;
+	cout << " | |_  | | '__/ __| __| |_  | | __|   " << endl;
+	cout << " |  _| | | |  \\__ \\ |_|  _| | | |_    " << endl;
+	cout << " |_|   |_|_|  |___/\\__|_|   |_|\\__|   " << endl;
+	cout << "                                      " << endl;
 
 	cout << "Código em: https://github.com/thisenrose/BuddySystem" << endl;
 	imprimirComandosDisponiveis();
