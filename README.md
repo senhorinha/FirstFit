@@ -5,7 +5,7 @@
 ### Autor
 
 * [Thiago Senhorinha Rose](https://github.com/thisenrose)
-* [Cristiana Pinho]()	
+* [Cristiana Pinho](https://github.com/kitpinho)	
 
 ### Orientador
 
@@ -17,7 +17,7 @@
 
 # Gerenciamento de Memória
 
-Consiste em alocar porções da memória dinamicamente aos programas que requisitarem e libera-las quando não forem mais necessárias. 
+Consiste em alocar porções da memória dinamicamente aos programas que requisitarem e libera-las quando não forem mais necessárias.
 
 # Buddy System
 
