@@ -1,0 +1,14 @@
+// Arquivo com descrição dos processos:
+// a linha deve conter apenas: p1 p2 p3 p4
+// p1 = nome
+// p2 = tamanho
+// p3 = tempo de chegada
+// p4 = tempo de execução
+// Exemplos abaixo:
+
+google-chrome 10 10 10
+firefox 10 10 10
+
+erro!
+erro!
+x)
