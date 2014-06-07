@@ -1,29 +1,44 @@
-#include <iostream>
+/*#include <iostream>
 #include <stdio.h>
 
-#include "controleProcesso.h"
-#include "controleProcesso.cpp"
-#include "bloco.h"
-#include "bloco.cpp"
-#include "memoria.h"
-#include "memoria.cpp"
+#include "ControleProcesso.h"
+#include "Bloco.h"
+#include "Memoria.h"
+
 
 #define TAM_MEMORIA 100
 
 using namespace std;
 
-/*
+
 int main()
 {
-    ControleProcesso proc(1728,0,5,21.5);
-    printf("Proc size: %f\n",proc.size);
-    Bloco bl(proc,proc.size);
-    printf("bloc size: %f | bloc.pid: %d\n",bl.size,bl.proc.pid);
+	cout << "teste";
+    //ControleProcesso proc(1728,0,5,21.5);
+    ControleProcesso p(1,1,2,15);
+    ControleProcesso p1(0,0,1,5);
+    //printf("Proc size: %f\n",proc.size);
+    Bloco bl(p1,p1.size);
+    Bloco bl1(p,p.size);
 
-    Memoria mem;
-    printf("Memoria size: %f\n",mem.memoria[0].size);
+    //printf("bloc size: %f | bloc.pid: %d\n",bl.size,bl.proc.pid);
+    Memoria m;
 
-    ControleProcesso proc1(1,0,5,21.5);
+    m.insertBloco(bl);
+    m.exibir();
+    m.insertBloco(bl1);
+    m.exibir();
+    m.removeBloco(bl);
+    m.insertBloco(bl);
+    cout << "apos remov" << endl;
+    m.exibir();
+
+
+    //printf("Memoria size: %f\n",mem.memoria[0].size);
+
+
+
+    /*ControleProcesso proc1(1,0,5,21.5);
     ControleProcesso empty;
     Bloco bloco1(proc1,proc1.size);
     Bloco bloco2(empty,TAM_MEMORIA - proc1.size);
@@ -33,7 +48,7 @@ int main()
 
     printf("Memoria size: %f\n",mem.memoria[0].size+mem.memoria[1].size);
     printf("Bloco 1 size: %f | pid = %d\n",mem.memoria[0].size, mem.memoria[0].proc.pid);
-    printf("Bloco 2 size: %f | pid = %d\n",mem.memoria[1].size, mem.memoria[1].proc.pid);
+    printf("Bloco 1) Sua percentagem de faltas reflete, de fato, suas ausências de sala de aula principalmente considerando o fato de que você se ausenta da sala de aula toda aula quarta-feira religiosamente por volta das 21h40, o que significa que toda quarta-feira você recebe uma falta pelo menos, pois a aula encerra oficialmente às 22h30;2 size: %f | pid = %d\n",mem.memoria[1].size, mem.memoria[1].proc.pid);
 
     ControleProcesso proc2(2,0,2,35);
     Bloco bloco3(proc2,proc2.size);
@@ -53,4 +68,5 @@ int main()
 
     return 0;
 }
-*/
+
+ */

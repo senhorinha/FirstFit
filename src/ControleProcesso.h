@@ -8,8 +8,10 @@ public:
 int pid;
    int tChegada;
    int tExec;
-   double size;
+   int size;
+
    ControleProcesso(int _pid, int _tChegada, int _tExec, double _size);
+   ControleProcesso(int _pid, int _tChegada, int _tExec, int _size);
    ControleProcesso();
 };
 

@@ -1,4 +1,4 @@
-#include "controleProcesso.h"
+#include "ControleProcesso.h"
 
 //Informações do Processo 
 ControleProcesso::ControleProcesso(int _pid, int _tChegada, int _tExec, double _size){
@@ -15,4 +15,10 @@ ControleProcesso::ControleProcesso(){
 	tExec = 0;
 	size = 0;	
 
+}
+ControleProcesso::ControleProcesso(int _pid, int _tChegada, int _tExec, int _size){
+	pid = _pid;
+	tChegada = _tChegada;
+	tExec = _tExec;
+	size = _size;
 }
