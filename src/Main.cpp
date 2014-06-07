@@ -35,7 +35,7 @@ void imprimirMensagemDeBoasVindas() {
 	cout << " |_|   |_|_|  |___/\\__|_|   |_|\\__|   " << endl;
 	cout << "                                      " << endl;
 
-	cout << "Código em: https://github.com/thisenrose/BuddySystem" << endl;
+	cout << "Código em: https://github.com/thisenrose/FirstFit.git" << endl;
 	imprimirComandosDisponiveis();
 	cout << "Sintaxe: <help> ou <help> + <comando> ou <comando> + <parametros>"
 			<< endl;
@@ -57,33 +57,42 @@ bool executarHelp(vector<string> partesDoComando) {
 		string comoUtilizar;
 		string parametros;
 		string exemploDeUso;
-		if (analisador->validarComando(comando)) {
-			if (comando == "alloc") {
-				descricao = "Aloca memória para um programa";
-				comoUtilizar = "alloc p1 p2";
-				parametros = "p1 -> nome do programa\np2->espaco em kb";
-				exemploDeUso = "alloc google-chrome 512";
-			} else if (comando == "free") {
-				descricao = "Libera a memória ocupada por um programa";
-				comoUtilizar = "free p1";
-				parametros = "p1 -> nome do programa";
-				exemploDeUso = "free google-chrome";
-			} else if (comando == "meminfo") {
-				descricao = "Imprime dados da memória como espaço livre, programas na memória etc.";
-				comoUtilizar = "meminfo";
-				parametros = "Nenhum";
-				exemploDeUso = "meminfo";
-			} else if (comando == "exit") {
-				descricao = "Finaliza a execução.";
-				comoUtilizar = "exit";
-				parametros = "Nenhum";
-				exemploDeUso = "exit";
-			}
-			terminal->imprimirHelp(comando, descricao, comoUtilizar, parametros,
-					exemploDeUso);
-			return true;
+		if (comando == "open") {
+			descricao = "Abrir o arquivo de entrada";
+			comoUtilizar = "open p1";
+			parametros = "p1 -> localização do arquivo";
+			exemploDeUso = "open arquivo_de_entrada";
+		} else if (comando == "exit") {
+			descricao = "Finaliza a execução.";
+			comoUtilizar = "exit";
+			parametros = "Nenhum";
+			exemploDeUso = "exit";
 		}
-		return false;
+		terminal->imprimirHelp(comando, descricao, comoUtilizar, parametros,
+				exemploDeUso);
+		return true;
+	}
+	return false;
+}
+
+void lerArquivoDeEntrada(string localDoArquivo) {
+	string linha;
+	ifstream arquivo(localDoArquivo);
+	if (arquivo.is_open()) {
+		while (getline(arquivo, linha)) {
+			if (!linha.empty()) {
+				if (linha.substr(0, 2) != "//") {
+					//TODO: Colocar processo na lista
+					vector<string> partesDoProceso =
+							analisador->separarParametros(linha);
+					string nome = partesDoProceso[0];
+					int tamanho = atoi(partesDoProceso[1].c_str());
+					int tempoDeExecucao = atoi(partesDoProceso[2].c_str());
+					int tempoDeChegada = atoi(partesDoProceso[3].c_str());
+				}
+			}
+		}
+		arquivo.close();
 	}
 }
 
@@ -91,13 +100,11 @@ bool executarHelp(vector<string> partesDoComando) {
 void executar(vector<string> partesDoComando) {
 	string nomeDoComando = partesDoComando[0];
 	if (nomeDoComando == "help") {
-		executarHelp (partesDoComando);
-	} else if (nomeDoComando == "alloc") {
-		//TODO: Alocar memómria
-	} else if (nomeDoComando == "free") {
-		//TODO: Liberar memória
-	} else if (nomeDoComando == "meminfo") {
-		//TODO: Imprimir informações da memória, como, espaço livre, blocos livres etc.
+		executarHelp(partesDoComando);
+	} else if (nomeDoComando == "open") {
+		if (analisador->validarArquivo(partesDoComando[1])) {
+			lerArquivoDeEntrada(partesDoComando[1]);
+		}
 	} else if (nomeDoComando == "exit") {
 		exit(1);
 	}
@@ -110,9 +117,8 @@ int main() {
 		terminal->parteInicialDoTerminal();
 		std::cin.getline(aux, 256);
 		string comando = aux;
-		vector<string> partesDoComando = analisador->separarParametros(comando);
-		if (analisador->validarComando(partesDoComando[0])) {
-			executar(partesDoComando);
+		if (analisador->validarComando(comando)) {
+			executar(analisador->separarParametros(comando));
 		} else {
 			terminal->imprimir(
 					"Erro! Comando não reconhecido. Digite help para ajuda");
