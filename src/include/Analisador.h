@@ -3,19 +3,24 @@
 
 #include <iostream>
 #include <vector>
+#include <cstdlib>
+#include<fstream>
+
 using namespace std;
 
 class Analisador {
 
 private:
-	vector<string> comandosDisponiveis = { "help", "exit" , "alloc", "free", "meminfo"};
+	vector<string> comandosDisponiveis = { "help", "open", "exit" };
+	bool validarProcesso(string processo);
+	bool isNumeroValido(string numero);
+	bool isNumero(const std::string& s);
 public:
 	Analisador();
 	bool validarComando(string comando);
+	bool validarArquivo(string nomeDoArquivo);
 	vector<string> getComandosDisponiveis();
 	vector<string> separarParametros(string);
-	bool isNumero(const std::string& s);
 };
-
 
 #endif /* ANALISADOR_H_ */
