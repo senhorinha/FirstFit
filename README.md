@@ -6,6 +6,8 @@
 
 * [Thiago Senhorinha Rose](https://github.com/thisenrose)
 * [Cristiana Pinho](https://github.com/kitpinho)
+* [Rodrigo Pires de Mello](https://github.com/rodrigoPOO)
+* [Gabriel Guerreiro](https://github.com/gguerreiro)
 
 ### Orientador
 
