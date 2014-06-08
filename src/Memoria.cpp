@@ -3,10 +3,10 @@
 Memoria::Memoria()
 {
 	/*memoria.clear();
-	Processo pr();
+	ControleProcesso pr();
 	Bloco bl(100);
 	memoria.push_back(bl);*/
-	//Processo pr();
+	//ControleProcesso pr();
 	//memória iniciada com tamanho total
 	tamanhoAtual = TAM_MEMORIA;
 	Bloco bl(20);
@@ -51,14 +51,15 @@ int Memoria::insertBloco(Bloco _bloco)
 }
 void Memoria::exibir(){
 	for(list<Bloco>::iterator it = mem.begin();it != mem.end();++it){
-		cout << "bloco PID " << it->proc.nome << " | tamanho do bloco " << it->size << " | espaço restante " << it->tamanhoRestante << endl;
+		cout << "\tPID: " << it->proc.nome << "\tTamanho do Bloco: " << it->size << "\tTamanho Restante: " << it->tamanhoRestante << endl;
+		//printf("bloco PID %s | tamanho do bloco %i | espaço restante %i \n",it->proc.nome,it->size,it->tamanhoRestante);
 	}
 }
 int Memoria::removeBloco(Bloco _bloco){
 	//procurar um bloco alocado por seu PID;
 	int pos = 0;
 	for(list<Bloco>::iterator it = mem.begin();it !=mem.end();++it){
-		if(it->proc.nome == _bloco.proc.nome){
+		if(it->proc.nome.compare(_bloco.proc.nome)){
 			it->proc.nome = "free";
 			it->tamanhoRestante = it->size;
 			return pos;
@@ -66,6 +67,16 @@ int Memoria::removeBloco(Bloco _bloco){
 		pos++;
 	}
 	throw ERROPOS;
+}
+int Memoria::rendimento(){
+	return 100-quantidadeVazia();
+}
+int Memoria::quantidadeVazia(){
+	int valorNaoUsado = 0;
+		for(list<Bloco>::iterator it = mem.begin();it!=mem.end();++it){
+			valorNaoUsado +=it->tamanhoRestante;
+		}
+		return valorNaoUsado;
 }
 //Remove do vetor 'memoria' o bloco na posição 'index'
 /*void Memoria::removeBloco(int index)
@@ -77,7 +88,7 @@ int Memoria::removeBloco(Bloco _bloco){
 void Memoria::splitBloco(int index_vitima, Bloco novo )
 {
 	memoria[index_vitima].size = memoria[index_vitima].size - novo.size;
-    Processo empty;
+    ControleProcesso empty;
 	Bloco livre(empty,memoria[index_vitima].size - novo.size);
 	std::vector<Bloco>::iterator it;
 	it = memoria.begin()+index_vitima;
@@ -86,7 +97,7 @@ void Memoria::splitBloco(int index_vitima, Bloco novo )
 
 void Memoria::mergeBloco(int index_bl1, int index_bl2)
 {
-	Processo empty;
+	ControleProcesso empty;
 	Bloco livre(empty, memoria[index_bl1].size + memoria[index_bl2].size);
 	removeBloco(index_bl1);
 	removeBloco(index_bl2);
@@ -95,4 +106,3 @@ void Memoria::mergeBloco(int index_bl1, int index_bl2)
 	memoria.insert(it,livre);
 
 }*/
-
