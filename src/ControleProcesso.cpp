@@ -1,4 +1,4 @@
-#include "ControleProcesso.h"
+#include "include/ControleProcesso.h"
 
 //Informações do Processo 
 ControleProcesso::ControleProcesso(int _pid, int _tChegada, int _tExec, double _size){

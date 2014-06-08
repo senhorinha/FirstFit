@@ -1,4 +1,4 @@
-#include "Bloco.h"
+#include "include/Bloco.h"
 
 Bloco::Bloco(ControleProcesso _proc, int _size)
 {
