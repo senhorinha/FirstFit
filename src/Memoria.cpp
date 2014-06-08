@@ -3,10 +3,10 @@
 Memoria::Memoria()
 {
 	/*memoria.clear();
-	ControleProcesso pr();
+	Processo pr();
 	Bloco bl(100);
 	memoria.push_back(bl);*/
-	//ControleProcesso pr();
+	//Processo pr();
 	//memória iniciada com tamanho total
 	tamanhoAtual = TAM_MEMORIA;
 	Bloco bl(20);
@@ -45,7 +45,7 @@ int Memoria::insertBloco(Bloco _bloco)
 }
 void Memoria::exibir(){
 	for(list<Bloco>::iterator it = mem.begin();it != mem.end();++it){
-		printf("bloco PID %i | tamanho do bloco %i | espaço restante %i \n",it->proc.nome,it->size,it->tamanhoRestante);
+		cout << "bloco PID " << it->proc.nome << " | tamanho do bloco " << it->size << " | espaço restante " << it->tamanhoRestante << endl;
 	}
 }
 int Memoria::removeBloco(Bloco _bloco){
@@ -71,7 +71,7 @@ int Memoria::removeBloco(Bloco _bloco){
 void Memoria::splitBloco(int index_vitima, Bloco novo )
 {
 	memoria[index_vitima].size = memoria[index_vitima].size - novo.size;
-    ControleProcesso empty;
+    Processo empty;
 	Bloco livre(empty,memoria[index_vitima].size - novo.size);
 	std::vector<Bloco>::iterator it;
 	it = memoria.begin()+index_vitima;
@@ -80,7 +80,7 @@ void Memoria::splitBloco(int index_vitima, Bloco novo )
 
 void Memoria::mergeBloco(int index_bl1, int index_bl2)
 {
-	ControleProcesso empty;
+	Processo empty;
 	Bloco livre(empty, memoria[index_bl1].size + memoria[index_bl2].size);
 	removeBloco(index_bl1);
 	removeBloco(index_bl2);

@@ -1,34 +1,34 @@
-#ifndef EVENTO_H_
-#define EVENTO_H_
+#ifndef __EVENTO_H__
+#define __EVENTO_H__
 
-#include "ControleProcesso.h"
+#include  "Processo.h"
 
 class Evento {
-
-protected:
-	ControleProcesso *processo;
-	long tempo;
-public:
-	virtual void executar() = 0;
-	virtual void atualizarEstatisticas() = 0;
-
-	ControleProcesso * getProcesso() {
-		return processo;
-	}
-
-	long getTempo() {
-		return tempo;
-	}
-
-	int compareTo(Evento *evento) {
-		long outroTempo = evento->getTempo();
-		if (tempo < outroTempo) {
-			return -1;
-		} else if (tempo > outroTempo) {
-			return 1;
-		} else {
-			return 0;
-		}
-	}
+	public:
+		const long tempo; // Momento em que o evento deve acontecer
+		const Processo *processo; // Processo pertencente ao evento
+		
+		
+		
+		Evento(Processo *p, long tempo);
+		
+		/**
+		 * Executa o evento
+		 * Implementar o método dessa maneira faz com que as classes derivadas
+		 * sejam obrigadas a implementá-lo.
+		 */
+		virtual void executar() = 0;
+		
+		/**
+		 * Compara dois eventos e retorna um inteiro para indicar a relação de
+		 * precedência entre eles.
+		 *
+		 * Valores menores que zero indicam que o evento que chamou o método
+		 * precede o passado como parâmetro, valores maiores que zero indicam
+		 * o contrário e zero indica que os eventos devem ocorrer ao mesmo tempo
+		 * ou não importa a ordem deles;
+		 */
+		int comparar(Evento *e);
 };
-#endif /* EVENTO_H_ */
+
+#endif

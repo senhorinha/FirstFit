@@ -7,15 +7,16 @@
 #include "include/Analisador.h"
 #include "include/Terminal.h"
 #include "include/Evento.h"
-#include "include/Entrada.h"
-#include "include/Saida.h"
-#include "include/ControleProcesso.h"
+#include "include/EventoEntrada.h"
+#include "include/EventoSaida.h"
+#include "include/ListaEventos.h"
+#include "include/Processo.h"
 
 using namespace std;
 
 Analisador *analisador = new Analisador();
 Terminal *terminal = new Terminal();
-ListaEncadeadaOrdenada *listaDeEventos = new ListaEncadeadaOrdenada();
+ListaEventos *listaDeEventos = new ListaEventos();
 
 void imprimirComandosDisponiveis() {
 	vector<string> comandosDisponiveis = analisador->getComandosDisponiveis();
@@ -94,9 +95,9 @@ void lerArquivoDeEntrada(string localDoArquivo) {
 					int tamanho = atoi(partesDoProceso[1].c_str());
 					int tempoDeExecucao = atoi(partesDoProceso[2].c_str());
 					int tempoDeChegada = atoi(partesDoProceso[3].c_str());
-					ControleProcesso * processo = new ControleProcesso(nome,
+					Processo * processo = new Processo(nome,
 							tempoDeChegada, tempoDeExecucao, tamanho);
-					Evento * evento = new Entrada(processo, processo->tChegada);
+					Evento * evento = new EventoEntrada(processo, processo->tChegada);
 					listaDeEventos->adicionar(evento);
 				}
 			}

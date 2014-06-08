@@ -2,7 +2,7 @@
 #define __EVENTO_ENTRADA_H__
 
 #include "Evento.h"
-#include  "Processo.h"
+#include "Processo.h"
 
 class EventoEntrada : public Evento {
 	public:

@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <cstdlib>
-#include<fstream>
+#include <fstream>
 
 using namespace std;
 

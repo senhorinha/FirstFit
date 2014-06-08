@@ -1,4 +1,4 @@
-#include "EventoEntrada.h"
+#include "include/EventoEntrada.h"
 
 EventoEntrada::EventoEntrada(Processo *p, long t) : Evento(p, t) {
 }

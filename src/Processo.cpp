@@ -1,7 +1,7 @@
-#include "include/ControleProcesso.h"
+#include "include/Processo.h"
 
 //Informações do Processo 
-ControleProcesso::ControleProcesso(string nome, int _tChegada, int _tExec, double _size){
+Processo::Processo(string nome, int _tChegada, int _tExec, double _size){
 	this->nome = nome;
 	tChegada = _tChegada;
 	tExec = _tExec;
@@ -9,14 +9,14 @@ ControleProcesso::ControleProcesso(string nome, int _tChegada, int _tExec, doubl
 
 }
 //Usado para o segmento não alocado da memoria
-ControleProcesso::ControleProcesso(){
+Processo::Processo(){
 	nome = "free";
 	tChegada = 0;
 	tExec = 0;
 	size = 0;	
 
 }
-ControleProcesso::ControleProcesso(string nome, int _tChegada, int _tExec, int _size){
+Processo::Processo(string nome, int _tChegada, int _tExec, int _size){
 	this->nome = nome;
 	tChegada = _tChegada;
 	tExec = _tExec;
