@@ -9,7 +9,7 @@ Bloco::Bloco(ControleProcesso _proc, int _size)
 Bloco::Bloco(int _size)
 {
 	size = _size;
-	proc.pid = -1;
+	proc.nome = "free";
 	proc.size = _size;
 	tamanhoRestante = size;
 }
