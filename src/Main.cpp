@@ -6,11 +6,16 @@
 
 #include "include/Analisador.h"
 #include "include/Terminal.h"
+#include "include/Evento.h"
+#include "include/Entrada.h"
+#include "include/Saida.h"
+#include "include/ControleProcesso.h"
 
 using namespace std;
 
 Analisador *analisador = new Analisador();
 Terminal *terminal = new Terminal();
+ListaEncadeadaOrdenada *listaDeEventos = new ListaEncadeadaOrdenada();
 
 void imprimirComandosDisponiveis() {
 	vector<string> comandosDisponiveis = analisador->getComandosDisponiveis();
@@ -89,6 +94,10 @@ void lerArquivoDeEntrada(string localDoArquivo) {
 					int tamanho = atoi(partesDoProceso[1].c_str());
 					int tempoDeExecucao = atoi(partesDoProceso[2].c_str());
 					int tempoDeChegada = atoi(partesDoProceso[3].c_str());
+					ControleProcesso * processo = new ControleProcesso(nome,
+							tempoDeChegada, tempoDeExecucao, tamanho);
+					Evento * evento = new Entrada(processo, processo->tChegada);
+					listaDeEventos->adicionar(evento);
 				}
 			}
 		}
