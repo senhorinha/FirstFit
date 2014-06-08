@@ -1,15 +1,16 @@
-#include <iostream>
-#include <stdexcept>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-
 #include "include/Analisador.h"
 #include "include/Terminal.h"
 #include "include/Evento.h"
 #include "include/Entrada.h"
 #include "include/Saida.h"
 #include "include/ControleProcesso.h"
+#include "include/ListaEncadeadaOrdenada.h"
+#include <iostream>
+#include <stdexcept>
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+
 
 using namespace std;
 
@@ -134,4 +135,5 @@ int main() {
 		}
 	}
 }
+
 

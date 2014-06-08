@@ -5,6 +5,7 @@
 #include <iostream>
 #include <list>
 #include "Bloco.h"
+#include <string.h>
 #include "ControleProcesso.h"
 
 #define ERROALOC -3
