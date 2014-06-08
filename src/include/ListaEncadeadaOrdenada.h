@@ -6,9 +6,11 @@
 class ListaEncadeadaOrdenada {
 
 private:
-	Nodo  *inicial;
+	Nodo *inicial;
 
 public:
+	ListaEncadeadaOrdenada() {
+	}
 	ListaEncadeadaOrdenada(Nodo * inicial) {
 		this->inicial = inicial;
 	}
