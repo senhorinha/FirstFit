@@ -10,7 +10,7 @@
 #define ERROALOC -3
 #define TAM_MEMORIA 100
 #define ERROPOS -2
-#define FREE -1
+#define FREE "free"
 using namespace std;
 class Memoria
 {   
