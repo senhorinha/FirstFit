@@ -1,9 +1,9 @@
 /*#include <iostream>
 #include <stdio.h>
 
-#include "ControleProcesso.h"
-#include "Bloco.h"
-#include "Memoria.h"
+#include "include/ControleProcesso.h"
+#include "include/Bloco.h"
+#include "include/Memoria.h"
 
 
 #define TAM_MEMORIA 100
@@ -15,23 +15,32 @@ int main()
 {
 	cout << "teste";
     //ControleProcesso proc(1728,0,5,21.5);
-    ControleProcesso p(1,1,2,15);
-    ControleProcesso p1(0,0,1,5);
+    ControleProcesso p("g0",1,2,15);
+    ControleProcesso p1("g1",0,1,10);
+    ControleProcesso p2("g2",0,1,20);
+    ControleProcesso p3("g3",0,1,5);
+    ControleProcesso p4("g4",0,1,10);
     //printf("Proc size: %f\n",proc.size);
-    Bloco bl(p1,p1.size);
-    Bloco bl1(p,p.size);
+    Bloco bl(p,p.size);
+    Bloco bl1(p1,p1.size);
+    Bloco bl2(p2,p2.size);
+    Bloco bl3(p3,p3.size);
+    Bloco bl4(p4,p4.size);
+
 
     //printf("bloc size: %f | bloc.pid: %d\n",bl.size,bl.proc.pid);
     Memoria m;
 
     m.insertBloco(bl);
-    m.exibir();
+    m.insertBloco(bl1);
+    m.insertBloco(bl2);
+    m.insertBloco(bl3);
+    m.insertBloco(bl4);
+    m.insertBloco(bl1);
+    m.insertBloco(bl3);
     m.insertBloco(bl1);
     m.exibir();
-    m.removeBloco(bl);
-    m.insertBloco(bl);
-    cout << "apos remov" << endl;
-    m.exibir();
+}
 
 
     //printf("Memoria size: %f\n",mem.memoria[0].size);
@@ -69,4 +78,5 @@ int main()
     return 0;
 }
 
- */
+*/
+

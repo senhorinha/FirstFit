@@ -12,8 +12,11 @@ Memoria::Memoria()
 	Bloco bl(20);
 	Bloco bl1(5);
 	Bloco bl2(15);
-	Bloco bl3(8);
+	Bloco bl3(20);
 	Bloco bl4(10);
+	Bloco bl5(15);
+	Bloco bl6(5);
+	Bloco bl7(10);
 	mem.clear();
 	//inicio a memoria com várias divisões do tamanho da memoria.
 	mem.push_back(bl);
@@ -21,6 +24,9 @@ Memoria::Memoria()
 	mem.push_back(bl2);
 	mem.push_back(bl3);
 	mem.push_back(bl4);
+	mem.push_back(bl5);
+	mem.push_back(bl6);
+	mem.push_back(bl7);
 
 }
 //Insere um novo bloco na 'memoria'
@@ -29,7 +35,7 @@ int Memoria::insertBloco(Bloco _bloco)
 	int posicaoAlocado = 0;
 	//alocar um processo caso possua tamanho suficiente e não tiver alocado por outro processo;
 	for(list<Bloco>::iterator it=mem.begin();it!=mem.end();++it){
-		if(it->proc.nome == FREE){
+		if(it->proc.nome.compare(FREE) == 0){
 			if(it->size >= _bloco.size){
 				//espaço suficiente, então alocar
 				it->tamanhoRestante = it->size - _bloco.size;
