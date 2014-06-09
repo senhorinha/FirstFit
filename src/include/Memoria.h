@@ -22,14 +22,16 @@ public:
    int tamanhoAtual;
 
    Memoria();
-   int insertBloco(Bloco _bloco);
+   int insertProcesso(Processo _processo);
    int removeBloco(Bloco _bloco);
+   int removerProcesso(Processo _processo);
    void removeBloco(int index);
-   void splitBloco(int index_vitima, Bloco novo );
-   void mergeBloco(int index_bl1, int index_bl2);
    void exibir();
    int rendimento();
    int quantidadeVazia();
+   void decrementarProc();
+   /*responde se algum processo foi retirado da memoria*/
+   bool verificarDesalocamento();
 
 };
 

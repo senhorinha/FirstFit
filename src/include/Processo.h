@@ -15,6 +15,7 @@ class Processo {
 		Processo(string nome, int _tChegada, int _tExec, double _size);
 		Processo(string nome, int _tChegada, int _tExec, int _size);
 		Processo();
+
 };
 
 #endif

@@ -1,15 +1,14 @@
 #include "include/Bloco.h"
 
-Bloco::Bloco(Processo _proc, int _size) {
-	proc = _proc;
-	size = _size;
-	tamanhoRestante = size;
-}
-
 Bloco::Bloco(int _size) {
+	alocado = false;
 	size = _size;
-	proc.nome = "free";
-	proc.size = _size;
+	tamanhoRestante = _size;
+}
+Bloco::Bloco(Processo _proc){
+	proc = _proc;
+	size = _proc.size;
 	tamanhoRestante = size;
+
 }
 
