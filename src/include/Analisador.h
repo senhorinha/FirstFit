@@ -11,7 +11,7 @@ using namespace std;
 class Analisador {
 
 private:
-	vector<string> comandosDisponiveis = { "help", "open", "exit" };
+	vector<string> comandosDisponiveis = { "help", "open", "start" ,"exit" };
 	bool validarProcesso(string processo);
 	bool isNumeroValido(string numero);
 	bool isNumero(const std::string& s);

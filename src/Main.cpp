@@ -1,16 +1,19 @@
 #include "include/Analisador.h"
 #include "include/Terminal.h"
 #include "include/Processo.h"
+#include "include/GerenciadorMemoria.h"
 #include <iostream>
 #include <stdexcept>
 #include <unistd.h>
 #include <stdio.h>
+#include <vector>
 #include <stdlib.h>
 
 using namespace std;
 
 Analisador *analisador = new Analisador();
 Terminal *terminal = new Terminal();
+vector<Processo> processosCarregados;
 
 void imprimirComandosDisponiveis() {
 	vector<string> comandosDisponiveis = analisador->getComandosDisponiveis();
@@ -89,8 +92,9 @@ void lerArquivoDeEntrada(string localDoArquivo) {
 					int tamanho = atoi(partesDoProceso[1].c_str());
 					int tempoDeExecucao = atoi(partesDoProceso[2].c_str());
 					int tempoDeChegada = atoi(partesDoProceso[3].c_str());
-					Processo * processo = new Processo(nome,
-							tempoDeChegada, tempoDeExecucao, tamanho);
+					Processo * processo = new Processo(nome, tempoDeChegada,
+							tempoDeExecucao, tamanho);
+					processosCarregados.push_back(*processo);
 				}
 			}
 		}
@@ -107,6 +111,12 @@ void executar(vector<string> partesDoComando) {
 		if (analisador->validarArquivo(partesDoComando[1])) {
 			lerArquivoDeEntrada(partesDoComando[1]);
 		}
+	} else if (nomeDoComando == "start") {
+		GerenciadorMemoria gerenciador;
+		for (int a = 0; a < processosCarregados.size(); ++a) {
+			gerenciador.escalonarProcesso(processosCarregados[a]);
+		}
+		gerenciador.executarProcessos();
 	} else if (nomeDoComando == "exit") {
 		exit(1);
 	}
@@ -127,5 +137,4 @@ int main() {
 		}
 	}
 }
-
 

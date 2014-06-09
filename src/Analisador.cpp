@@ -24,6 +24,8 @@ bool Analisador::validarComando(string comando) {
 		if (c == partesDoComando[0]) {
 			if (c == "open" && numeroDeParametros == 1) {
 				return true;
+			} else if (c == "start" && numeroDeParametros == 0) {
+				return true;
 			} else if (c == "exit" && numeroDeParametros == 0) {
 				return true;
 			} else if (c == "help") {
