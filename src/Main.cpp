@@ -65,6 +65,11 @@ bool executarHelp(vector<string> partesDoComando) {
 			comoUtilizar = "open p1";
 			parametros = "p1 -> localização do arquivo";
 			exemploDeUso = "open arquivo_de_entrada";
+		} else if (comando == "start") {
+			descricao = "Inicia a simulação do First-Fit";
+			comoUtilizar = "start";
+			parametros = "Nenhum";
+			exemploDeUso = "start";
 		} else if (comando == "exit") {
 			descricao = "Finaliza a execução.";
 			comoUtilizar = "exit";
