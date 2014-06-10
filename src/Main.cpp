@@ -11,12 +11,12 @@
 
 using namespace std;
 
-Analisador *analisador = new Analisador();
-Terminal *terminal = new Terminal();
+Analisador analisador;
+Terminal terminal;
 vector<Processo> processosCarregados;
 
 void imprimirComandosDisponiveis() {
-	vector<string> comandosDisponiveis = analisador->getComandosDisponiveis();
+	vector<string> comandosDisponiveis = analisador.getComandosDisponiveis();
 	cout << "Comandos disponíveis: [";
 	for (int i = 0; i < comandosDisponiveis.size(); i++) {
 		auto& c = comandosDisponiveis[i];
@@ -76,7 +76,7 @@ bool executarHelp(vector<string> partesDoComando) {
 			parametros = "Nenhum";
 			exemploDeUso = "exit";
 		}
-		terminal->imprimirHelp(comando, descricao, comoUtilizar, parametros,
+		terminal.imprimirHelp(comando, descricao, comoUtilizar, parametros,
 				exemploDeUso);
 		return true;
 	}
@@ -91,7 +91,7 @@ void lerArquivoDeEntrada(string localDoArquivo) {
 			if (!linha.empty()) {
 				if (linha.substr(0, 2) != "//") {
 					vector<string> partesDoProceso =
-							analisador->separarParametros(linha);
+							analisador.separarParametros(linha);
 					string nome = partesDoProceso[0];
 					int tamanho = atoi(partesDoProceso[1].c_str());
 					int tempoDeChegada = atoi(partesDoProceso[2].c_str());
@@ -112,7 +112,7 @@ void executar(vector<string> partesDoComando) {
 	if (nomeDoComando == "help") {
 		executarHelp(partesDoComando);
 	} else if (nomeDoComando == "open") {
-		if (analisador->validarArquivo(partesDoComando[1])) {
+		if (analisador.validarArquivo(partesDoComando[1])) {
 			lerArquivoDeEntrada(partesDoComando[1]);
 		}
 	} else if (nomeDoComando == "start") {
@@ -130,13 +130,13 @@ int main() {
 	imprimirMensagemDeBoasVindas();
 	while (true) {
 		char aux[256];
-		terminal->parteInicialDoTerminal();
+		terminal.parteInicialDoTerminal();
 		std::cin.getline(aux, 256);
 		string comando = aux;
-		if (analisador->validarComando(comando)) {
-			executar(analisador->separarParametros(comando));
+		if (analisador.validarComando(comando)) {
+			executar(analisador.separarParametros(comando));
 		} else {
-			terminal->imprimir(
+			terminal.imprimir(
 					"Erro! Comando não reconhecido. Digite help para ajuda");
 		}
 	}
