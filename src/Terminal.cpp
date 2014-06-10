@@ -5,11 +5,11 @@ Terminal::Terminal() {
 	struct utsname u_name;
 	uname(&u_name);
 	// Concatena login
-	loginComNomeDaMaquina += "getlogin()";
+	loginComNomeDaMaquina += getlogin();
 	// Concatena @
 	loginComNomeDaMaquina += "@";
 	// Concatena nome da máquina
-	loginComNomeDaMaquina += "u_name.nodename";
+	loginComNomeDaMaquina += u_name.nodename;
 }
 
 void Terminal::parteInicialDoTerminal() {
