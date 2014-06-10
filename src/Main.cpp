@@ -90,13 +90,12 @@ void lerArquivoDeEntrada(string localDoArquivo) {
 		while (getline(arquivo, linha)) {
 			if (!linha.empty()) {
 				if (linha.substr(0, 2) != "//") {
-					//TODO: Colocar processo na lista
 					vector<string> partesDoProceso =
 							analisador->separarParametros(linha);
 					string nome = partesDoProceso[0];
 					int tamanho = atoi(partesDoProceso[1].c_str());
-					int tempoDeExecucao = atoi(partesDoProceso[2].c_str());
-					int tempoDeChegada = atoi(partesDoProceso[3].c_str());
+					int tempoDeChegada = atoi(partesDoProceso[2].c_str());
+					int tempoDeExecucao = atoi(partesDoProceso[3].c_str());
 					Processo * processo = new Processo(nome, tempoDeChegada,
 							tempoDeExecucao, tamanho);
 					processosCarregados.push_back(*processo);

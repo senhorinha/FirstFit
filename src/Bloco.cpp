@@ -3,12 +3,12 @@
 Bloco::Bloco(int _size) {
 	alocado = false;
 	size = _size;
-	tamanhoRestante = _size;
+	espacoOcupado = 0;
 }
 Bloco::Bloco(Processo _proc){
 	proc = _proc;
 	size = _proc.size;
-	tamanhoRestante = size;
+	espacoOcupado = 0;
 
 }
 

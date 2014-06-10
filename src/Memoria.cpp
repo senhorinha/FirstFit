@@ -33,7 +33,7 @@ int Memoria::insertProcesso(Processo _processo)
 		if(!(it->alocado)){
 			if(it->size >= _processo.size){
 				//espaço suficiente, então alocar
-				it->tamanhoRestante = it->size - _processo.size;
+				it->espacoOcupado = _processo.size;
 				it->proc = _processo;
 				tamanhoAtual -=_processo.size;
 				it->alocado = true;
@@ -46,9 +46,12 @@ int Memoria::insertProcesso(Processo _processo)
 	return ERROALOC;
 }
 void Memoria::exibir(){
-	for(list<Bloco>::iterator it = mem.begin();it != mem.end();++it){
-		cout << "\tPID: " << it->proc.nome << "\tTamanho do Bloco: " << it->size << "\tTamanho Restante: " << it->tamanhoRestante << endl;
-		//printf("bloco PID %s | tamanho do bloco %i | espaço restante %i \n",it->proc.nome,it->size,it->tamanhoRestante);
+	for(list<Bloco>::iterator it = mem.begin();it != mem.end();++it) {
+		if(it->espacoOcupado == 0) {
+			cout << "      bloco ( tamanho: " << it->size << "\tvazio )" << endl;
+		} else {
+			cout << "      bloco ( tamanho: " << it->size << "\tocupado: " << it->espacoOcupado << "\tprocesso: " << it->proc.nome << " )" << endl;
+		}
 	}
 }
 int Memoria::removeBloco(Bloco _bloco){
@@ -57,7 +60,7 @@ int Memoria::removeBloco(Bloco _bloco){
 	for(list<Bloco>::iterator it = mem.begin();it !=mem.end();++it){
 		if(it->proc.nome.compare(_bloco.proc.nome)){
 			it->proc.nome = "free";
-			it->tamanhoRestante = it->size;
+			it->espacoOcupado = 0;
 			return pos;
 		}
 		pos++;
@@ -70,9 +73,8 @@ int Memoria::removerProcesso(Processo _processo){
 	for(list<Bloco>::iterator it = mem.begin();it !=mem.end();++it){
 		if(it->alocado){
 			if(it->proc.nome.compare(_processo.nome) == 0){
-				cout << "retirando um processo: " << it->proc.nome<< endl;
 				it->proc.nome = "free";
-				it->tamanhoRestante = it->size;
+				it->espacoOcupado = 0;
 				it->alocado = false;
 				return pos;
 			}
@@ -88,7 +90,7 @@ int Memoria::rendimento(){
 int Memoria::quantidadeVazia(){
 	int valorNaoUsado = 0;
 	for(list<Bloco>::iterator it = mem.begin();it!=mem.end();++it){
-		valorNaoUsado +=it->tamanhoRestante;
+		valorNaoUsado += it->size - it->espacoOcupado;
 	}
 	return valorNaoUsado;
 }
@@ -97,13 +99,22 @@ void Memoria::decrementarProc(){
 		it->proc.tExec--;
 	}
 }
-bool Memoria::verificarDesalocamento(){
+bool Memoria::desalocarExpirados(){
 	bool r = false;
 	for(list<Bloco>::iterator it = mem.begin();it!=mem.end();++it){
-		if(it->proc.tExec == 0){
+		if(it->proc.size != 0 && it->proc.tExec == 0) {
+			cout << "  << removendo " << it->proc.nome << endl;
 			removerProcesso(it->proc);
-			r=true;
+			r = true;
 		}
 	}
 	return r;
+}
+bool Memoria::empty(){
+	for(list<Bloco>::iterator it = mem.begin();it!=mem.end();++it){
+		if(it->espacoOcupado != 0){
+			return false;
+		}
+	}
+	return true;
 }

@@ -17,22 +17,25 @@ class Memoria
 {
 
 public:
-   //std::vector<Bloco> memoria;
-   std::list<Bloco> mem;
-   int tamanhoAtual;
+	//std::vector<Bloco> memoria;
+	std::list<Bloco> mem;
+	int tamanhoAtual;
 
-   Memoria();
-   int insertProcesso(Processo _processo);
-   int removeBloco(Bloco _bloco);
-   int removerProcesso(Processo _processo);
-   void removeBloco(int index);
-   void exibir();
-   int rendimento();
-   int quantidadeVazia();
-   void decrementarProc();
-   /*responde se algum processo foi retirado da memoria*/
-   bool verificarDesalocamento();
-
+	Memoria();
+	int insertProcesso(Processo _processo);
+	int removeBloco(Bloco _bloco);
+	int removerProcesso(Processo _processo);
+	void removeBloco(int index);
+	void exibir();
+	int rendimento();
+	int quantidadeVazia();
+	void decrementarProc();
+	
+	// responde se algum processo foi retirado da memoria
+	bool desalocarExpirados();
+	
+	// informa se ainda há um processo a ocupando
+	bool empty();
 };
 
 #endif

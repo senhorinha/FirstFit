@@ -6,5 +6,9 @@
 // p4 = tempo de execução
 // Exemplos abaixo:
 
-google-chrome 10 10 10
-firefox 10 10 10
+google-chrome 8 4 4
+firefox 6 6 10
+gedit 5 8 6
+python 8 11 21
+glade 5 12 4
+inkscape 8 14 6

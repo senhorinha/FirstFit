@@ -8,7 +8,7 @@ class Bloco {
 		bool alocado;
 		Processo proc;
 		int size;
-		int tamanhoRestante;
+		int espacoOcupado;
 		Bloco(Processo _proc, int _size);
 		Bloco(int _size);
 		Bloco();
