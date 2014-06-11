@@ -118,10 +118,13 @@ void executar(vector<string> partesDoComando) {
 		}
 	} else if (nomeDoComando == "start") {
 		GerenciadorMemoria gerenciador;
+		Logger::Instance()->abrirArquivoDeLog("arquivo_de_saida");
 		for (int a = 0; a < processosCarregados.size(); ++a) {
 			gerenciador.escalonarProcesso(processosCarregados[a]);
 		}
 		gerenciador.executarProcessos();
+		Logger::Instance()->fecharArquivoDeLog();
+		terminal.imprimir("Arquivo de saida gerado: arquivo_de_saida");
 	} else if (nomeDoComando == "exit") {
 		exit(1);
 	}
@@ -129,7 +132,6 @@ void executar(vector<string> partesDoComando) {
 
 int main() {
 	imprimirMensagemDeBoasVindas();
-	Logger::Instance()->abrirArquivoDeLog("arquivo_de_saida");
 	while (true) {
 		char aux[256];
 		terminal.parteInicialDoTerminal();
@@ -142,7 +144,5 @@ int main() {
 					"Erro! Comando não reconhecido. Digite help para ajuda");
 		}
 	}
-	terminal.imprimir("Arquivo de saida gerado: arquivo_de_saida");
-	Logger::Instance()->fecharArquivoDeLog();
 }
 
