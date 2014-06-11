@@ -142,6 +142,7 @@ int main() {
 					"Erro! Comando não reconhecido. Digite help para ajuda");
 		}
 	}
+	terminal.imprimir("Arquivo de saida gerado: arquivo_de_saida");
 	Logger::Instance()->fecharArquivoDeLog();
 }
 
