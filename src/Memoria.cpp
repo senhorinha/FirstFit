@@ -7,11 +7,9 @@ Memoria::Memoria() {
 	Bloco bl(20);
 	Bloco bl1(5);
 	Bloco bl2(15);
-	Bloco bl3(20);
-	Bloco bl4(10);
-	Bloco bl5(15);
-	Bloco bl6(5);
-	Bloco bl7(10);
+	Bloco bl3(35);
+	Bloco bl4(15);
+	Bloco bl5(10);
 
 	mem.push_back(bl);
 	mem.push_back(bl1);
@@ -19,8 +17,6 @@ Memoria::Memoria() {
 	mem.push_back(bl3);
 	mem.push_back(bl4);
 	mem.push_back(bl5);
-	mem.push_back(bl6);
-	mem.push_back(bl7);
 
 }
 //Insere um novo processo na 'memoria'
