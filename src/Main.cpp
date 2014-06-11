@@ -2,6 +2,7 @@
 #include "include/Terminal.h"
 #include "include/Processo.h"
 #include "include/GerenciadorMemoria.h"
+#include "include/Logger.h"
 #include <iostream>
 #include <stdexcept>
 #include <unistd.h>
@@ -128,6 +129,7 @@ void executar(vector<string> partesDoComando) {
 
 int main() {
 	imprimirMensagemDeBoasVindas();
+	Logger::Instance()->abrirArquivoDeLog("arquivo_de_saida");
 	while (true) {
 		char aux[256];
 		terminal.parteInicialDoTerminal();
@@ -140,5 +142,6 @@ int main() {
 					"Erro! Comando não reconhecido. Digite help para ajuda");
 		}
 	}
+	Logger::Instance()->fecharArquivoDeLog();
 }
 
