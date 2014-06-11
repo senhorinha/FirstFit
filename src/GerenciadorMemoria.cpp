@@ -1,4 +1,6 @@
 #include "include/GerenciadorMemoria.h"
+#include <sstream>
+#include "include/Logger.h"
 
 GerenciadorMemoria::GerenciadorMemoria() {
 	instante = 0;
@@ -14,7 +16,9 @@ void GerenciadorMemoria::escalonarProcesso(Processo p){
 void GerenciadorMemoria::exibirFila(){
 	priority_queue<Processo,vector<Processo>,TempoChegada> copy(queue);
 	while(!(copy.empty())){
-		std::cout << "nome do processo: " << copy.top().nome << std::endl;
+		stringstream descricao;
+		descricao << "nome do processo: " << copy.top().nome;
+		Logger::Instance()->escrever(descricao.str());
 		copy.pop();
 	}
 }
@@ -24,16 +28,18 @@ void GerenciadorMemoria::executarProcessos(){
 	// a cada ciclo verificar o tempo de cada processo executando na memoria
 	while(!(queue.empty() && espera.empty() && m.empty())) {
 		modificada = false;
-		
-		cout << "Iteração " << instante << ":" << endl;
-		
+		stringstream aux1;
+		aux1 << "Iteração " << instante << ":";
+		Logger::Instance()->escrever(aux1.str());
 		//verificar se algum processo precisa ser retirado
 		if(verificarSaida()) {
 			while(!espera.empty()) {
 				if(m.insertProcesso(espera.front()) == SEM_ESPACO) {
 					break;
 				}
-				cout << "    " << espera.front().nome << " alocado" << endl;
+				stringstream aux2;
+				aux2 << "    " << espera.front().nome << " alocado";
+				Logger::Instance()->escrever(aux2.str());
 				espera.pop();
 			}
 			modificada = true;
@@ -43,13 +49,17 @@ void GerenciadorMemoria::executarProcessos(){
 		while(!queue.empty()) {
 			aux = queue.top();
 			if(aux.tChegada == instante) {
-				cout << "  >> iniciando " << aux.nome << endl;
+				stringstream aux3;
+				aux3 << "  >> iniciando " << aux.nome;
+				Logger::Instance()->escrever(aux3.str());
+				stringstream aux4;
 				if(inserirProcesso(aux) == SEM_ESPACO) {
-					cout << "    sem espaço, colocar " << aux.nome << " em espera" << endl;
+					aux4 << "    sem espaço, colocar " << aux.nome << " em espera";
 					espera.push(aux);
 				} else {
-					cout << "    " << aux.nome << " alocado" << endl;
+					aux4 << "    " << aux.nome << " alocado";
 				}
+				Logger::Instance()->escrever(aux4.str());
 				queue.pop();
 				modificada = true;
 				continue;
@@ -59,21 +69,19 @@ void GerenciadorMemoria::executarProcessos(){
 		
 		instante++;
 			
-		// decrementa o tempo restante de todos os processos da memoria
 		decrementarExecucao();
-		
-		//cout << "dormindo por 1 seg" << endl;
-		//sleep(1);
-		
-		//fim de um ciclo
+		stringstream aux5;
 		if(modificada) {
-			cout << "  estrutura da memória:" << endl;
+			aux5 << "  estrutura da memória:";
 			m.exibir();
 		} else {
-			cout << "  Nada aconteceu desde o último relatório" << endl;
+			aux5 << "  Nada aconteceu desde o último relatório";
 		}
+		Logger::Instance()->escrever(aux5.str());
 	}
-	cout << "Finalizada a execução de todos os processos." << endl;
+	stringstream aux6;
+	aux6 << "Finalizada a execução de todos os processos.";
+	Logger::Instance()->escrever(aux6.str());
 }
 bool GerenciadorMemoria::verificarSaida(){
 	return m.desalocarExpirados();
@@ -81,7 +89,9 @@ bool GerenciadorMemoria::verificarSaida(){
 void GerenciadorMemoria::exibirFilaEspera(){
 	std::queue<Processo> copy(espera);
 	while(!(copy.empty())){
-		std::cout << "nome do processo: " << copy.front().nome << std::endl;
+		stringstream aux;
+		aux << "nome do processo: " << copy.front().nome;
+		Logger::Instance()->escrever(aux.str());
 		copy.pop();
 	}
 }
