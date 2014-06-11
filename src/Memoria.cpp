@@ -3,7 +3,6 @@
 #include "include/Memoria.h"
 
 Memoria::Memoria() {
-	//memória iniciada com tamanho total
 	tamanhoAtual = TAM_MEMORIA;
 	Bloco bl(20);
 	Bloco bl1(5);
@@ -14,15 +13,14 @@ Memoria::Memoria() {
 	Bloco bl6(5);
 	Bloco bl7(10);
 
-	//inicio a memoria com várias divisões do tamanho da memoria.
 	mem.push_back(bl);
 	mem.push_back(bl1);
 	mem.push_back(bl2);
-	/*mem.push_back(bl3);
-	 mem.push_back(bl4);
-	 mem.push_back(bl5);
-	 mem.push_back(bl6);
-	 mem.push_back(bl7);*/
+	mem.push_back(bl3);
+	mem.push_back(bl4);
+	mem.push_back(bl5);
+	mem.push_back(bl6);
+	mem.push_back(bl7);
 
 }
 //Insere um novo processo na 'memoria'
